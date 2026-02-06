@@ -1,0 +1,42 @@
+Para desplegar imágenes en tiempo real (actualización continua) en Java Swing, el enfoque estándar consiste 
+en usar un JPanel personalizado y sobreescribir el método paintComponent para dibujar la imagen, llamando a 
+repaint() cada vez que la imagen cambia. 
+JVM Gaming
+JVM Gaming
+ +1
+Aquí tienes una guía y un ejemplo completo funcional.
+Pasos principales
+Cargar la imagen: Utilizar ImageIO.read() para cargar la imagen en un objeto BufferedImage.
+Crear el Panel Personalizado: Crear una clase que extienda JPanel.
+Dibujar la Imagen: Sobrescribir paintComponent(Graphics g) y usar g.drawImage().
+Actualizar en Tiempo Real: Llamar a repaint() desde un hilo o un temporizador (javax.swing.Timer) cuando se 
+obtenga una nueva imagen. 
+JVM Gaming
+JVM Gaming
+ +4
+Ejemplo de Código: Visualizador en Tiempo Real
+Este ejemplo carga una imagen, la dibuja y luego la "actualiza" (simulando tiempo real) moviéndola.
+java
+
+Puntos clave para alto rendimiento
+repaint() vs paint(): Siempre usa repaint(). Swing gestiona la actualización eficientemente.
+paintComponent: Sobrescribe paintComponent en lugar de paint para asegurar que el fondo se limpie 
+correctamente.
+Imágenes en memoria: Utiliza BufferedImage para manipulación de imágenes en memoria, es más rápido que 
+recargar archivos constantemente.
+Escalado: Si la imagen es muy grande, usa getScaledInstance() antes de dibujarla para mejorar el rendimiento. 
+JVM Gaming
+JVM Gaming
+ +4
+Alternativa simple (JLabel)
+Si solo necesitas actualizar una imagen estática por otra de vez en cuando, puedes actualizar un ImageIcon en 
+un JLabel:
+java
+ImageIcon icon = new ImageIcon("nueva_imagen.png");
+label.setIcon(icon);
+Sin embargo, para animaciones o video (tiempo real), el método de JPanel y Graphics es superior. 
+Stack Overflow
+Stack Overflow
+ +1
+
+
