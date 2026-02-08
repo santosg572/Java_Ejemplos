@@ -1,8 +1,4 @@
 #!/bin/bash
 
-javac ${1}.java
-
-java ${1}
-
-
+sphinx-build -M html source outputdir
 
